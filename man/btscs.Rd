@@ -12,6 +12,12 @@ R package version 1.3. \url{https://CRAN.R-project.org/package=DAMisc}.
 
 It was ported largely to reduce the dependencies needed for the examples.
 There are also internal improvements, largely to handle single period spells.
+
+David's package implemented the Stata function from:
+
+Beck, N.. J. Katz and R. Tucker. 1998. "Beyond Ordinary Logit: Taking Time
+Seriously in Binary-Time-Series-Cross-Section Models". American Journal of
+Political Science 42(4): 1260-1288.
 }
 \usage{
 btscs(df, event, t_var, cs_unit, pad_ts = FALSE)
