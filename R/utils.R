@@ -133,7 +133,7 @@ linear_systematic <- function(b_sims, newdata, inc_intercept = TRUE) {
 #' @examples
 #' library(car)
 #'
-#' # Estimate model
+#' # Normal linear model
 #' m1 <- lm(prestige ~ education + type, data = Prestige)
 #' # Simulate coefficients
 #' m1_sims <- b_sim(m1)
@@ -142,6 +142,28 @@ linear_systematic <- function(b_sims, newdata, inc_intercept = TRUE) {
 #' fitted_df_1 <- expand.grid(education = 6:16, typewc = 1)
 #'
 #' linear_qi <- qi_builder(b_sims = m1_sims, newdata = fitted_df_1)
+#'
+#' # Logistic regression
+#' # Download data
+#' URL <- 'http://www.ats.ucla.edu/stat/data/binary.csv'
+#' Admission <- read.csv(URL)
+#' Admission$rank <- as.factor(Admission$rank)
+#'
+#' # Estimate model
+#' m2 <- glm(admit ~ gre + gpa + rank, data = Admission, family = 'binomial')
+#'
+#' # Simulate coefficients
+#' m2_sims <- b_sim(m2)
+#'
+#' # Create fitted values
+#' m2_fitted <- expand.grid(gre = seq(220, 800, by = 10), gpa = c(2, 4),
+#'                          rank4 = 1)
+#'
+#' # Function to find predicted probabilities from logistic regression models
+#' pr_function <- function(x) 1 / (1 + exp(x))
+#'
+#' # Find quantity of interest
+#' logistic_qi <- qi_builder(m2_sims, m2_fitted, model = pr_function)
 #'
 #' @importFrom stats quantile
 #'

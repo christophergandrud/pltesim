@@ -47,9 +47,23 @@ test_that('linear_systematic output validity', {
 })
 
 # Test qi_builder -------------------------------------------------------
-qi_linear <- qi_builder(b_sims = m1_sims, newdata = fitted_df)
+
+# Linear model
+linear_qi <- qi_builder(b_sims = m1_sims, newdata = fitted_df)
+
+# Predicted probabilities from logistic regression
+URL <- 'http://www.ats.ucla.edu/stat/data/binary.csv'
+Admission <- read.csv(URL)
+Admission$rank <- as.factor(Admission$rank)
+m2 <- glm(admit ~ gre + gpa + rank, data = Admission, family = 'binomial')
+m2_sims <- b_sim(m2)
+m2_fitted <- expand.grid(gre = seq(220, 800, by = 10), gpa = c(2, 4),
+                         rank4 = 1)
+pr_function <- function(x) 1 / (1 + exp(x))
+logistic_qi <- qi_builder(m2_sims, m2_fitted, model = pr_function)
 
 test_that('qi_builder output validity', {
-    expect_equal(round(sum(qi_linear$qi_)), 468114)
+    expect_equal(round(sum(linear_qi$qi_)), 468114)
+    expect_equal(round(sum(logistic_qi)), 57639730)
 })
 
