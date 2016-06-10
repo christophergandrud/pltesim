@@ -4,7 +4,7 @@
 \alias{qi_builder}
 \title{Find quantities of interest from generalized linear models}
 \usage{
-qi_builder(b_sims, newdata, model, ...)
+qi_builder(b_sims, newdata, model, ci = 0.95, ...)
 }
 \arguments{
 \item{b_sims}{a data frame created by \code{\link{b_sim}} of simulated
@@ -19,12 +19,15 @@ linear regression model is assumed and the predicted values are returned
 \item{model}{a function for calculating how to find the quantity of interest
 from a vector of the fitted linear systematic component.}
 
-\item{...}{arguments to pass to \code{\link{linear_systematic}}}
+\item{ci}{the proportion of the central interval of the simulations to
+return. Must be in [0, 1].}
 
-\item{ci}{the}
+\item{...}{arguments to pass to \code{\link{linear_systematic}}}
 }
 \value{
-A vector of estimated quantities of interest for all simulations.
+A data frame fitted values supplied in \code{newdata} and associated
+simulated quantities of interest. The quantities of interest are in a column
+named \code{qi_}.
 }
 \description{
 Find quantities of interest from generalized linear models

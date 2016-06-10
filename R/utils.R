@@ -43,13 +43,14 @@ b_sim <- function(obj, nsim = 1000) {
 #' @param inc_intercept logical whether to include the intercept in the
 #' lineary systematic component.
 #'
-#' @return a vector of fitted linear systematic component estimates for all
-#' simulations.
+#' @return A data frame fitted values supplied in \code{newdata} and associated
+#' linear systematic component estimates for all simulationed coefficient
+#' estimates. The linear systematic components are included in a column
+#' named \code{ls_}.
 #'
 #' @examples
 #' library(car)
 #'
-#' #### Linear Model ####
 #' # Estimate model
 #' m1 <- lm(prestige ~ education + type, data = Prestige)
 #'
@@ -62,7 +63,7 @@ b_sim <- function(obj, nsim = 1000) {
 #' # Find linear systematic component for fitted values
 #' ls <- linear_systematic(b_sims = m1_sims, newdata = fitted_df)
 #'
-#' @seealso King, Gary, Michael Tomz, and Jason Wittenberg. 2000. "Making the
+#' @source King, Gary, Michael Tomz, and Jason Wittenberg. 2000. "Making the
 #' Most of Statistical Analyses: Improving Interpretation and Presentation."
 #' American Journal of Political Science 44(2): 341-55.
 #'
@@ -87,16 +88,26 @@ linear_systematic <- function(b_sims, newdata, inc_intercept = TRUE) {
 
     if (inc_intercept) {
         ls <- lapply(1:nrow(sims_fitted[[2]]), function(x) {
-            intercept + (sims_fitted[[1]] %*% sims_fitted[[2]][x, ])
+            fitted_1 <- sims_fitted[[2]][x, ]
+            data.frame(
+                data.frame(
+                    t(fitted_1)),
+                    ls_ = intercept + (sims_fitted[[1]] %*% fitted_1)
+            )
         })
     }
     else {
         ls <- lapply(1:nrow(sims_fitted[[2]]), function(x) {
-            sims_fitted[[1]] %*% sims_fitted[[2]][x, ]
+            fitted_1 <- sims_fitted[[2]][x, ]
+            data.frame(
+                data.frame(
+                    t(fitted_1)),
+                    ls_ = (sims_fitted[[1]] %*% fitted_1)
+            )
         })
     }
 
-    ls <- c(do.call(rbind, ls))
+    ls <- do.call(rbind, ls)
     return(ls)
 }
 
@@ -111,10 +122,13 @@ linear_systematic <- function(b_sims, newdata, inc_intercept = TRUE) {
 #' \code{\link{linear_systematic}}).
 #' @param model a function for calculating how to find the quantity of interest
 #' from a vector of the fitted linear systematic component.
-#' @param ci the
+#' @param ci the proportion of the central interval of the simulations to
+#' return. Must be in [0, 1].
 #' @param ... arguments to pass to \code{\link{linear_systematic}}
 #'
-#' @return A vector of estimated quantities of interest for all simulations.
+#' @return A data frame fitted values supplied in \code{newdata} and associated
+#' simulated quantities of interest. The quantities of interest are in a column
+#' named \code{qi_}.
 #'
 #' @examples
 #' library(car)
@@ -129,18 +143,44 @@ linear_systematic <- function(b_sims, newdata, inc_intercept = TRUE) {
 #'
 #' linear_qi <- qi_builder(b_sims = m1_sims, newdata = fitted_df_1)
 #'
+#' @importFrom stats quantile
+#'
 #' @export
 
-qi_builder <- function(b_sims, newdata, model, ...) {
-    ls <- linear_systematic(b_sims = b_sims, newdata = newdata, ci = 0.95, ...)
+qi_builder <- function(b_sims, newdata, model, ci = 0.95, ...) {
+    qi_ <- NULL
+    if (ci <= 0 | ci > 1) {
+        stop("ci must be greater than 0 and not greater than 1.",
+             call. = FALSE)
+    }
+
+    qi_df <- linear_systematic(b_sims = b_sims, newdata = newdata, ...)
 
     if (missing(model)) {
         message('Note: model argument missing -> assuming normal linear model.\n')
-        return(ls)
-    } else {
+        names(qi_df)[grep('ls_', names(qi_df))] <- 'qi_'
+    }
+    else {
         if (!is.function(model)) stop('model must be a function.',
             call. = FALSE)
-        qi <- model(ls)
-        return(qi)
+        qi_df[, 'qi_'] <- model(qi_df[['ls_']])
+        qi_df['ls_'] <- NULL
     }
+
+    if (ci < 1) {
+        lower <- (1 - ci)/2
+        upper <- 1 - lower
+        qi_df$scenario_ <- apply(qi_df[, 1:(ncol(qi_df)-1)], 1, paste,
+                                collapse = '_')
+        qi_list <- split(qi_df, qi_df[['scenario_']])
+
+        qi_list <- lapply(1:length(qi_list), function(x){
+            lower_bound <- quantile(qi_list[[x]][,'qi_'], prob = lower)
+            upper_bound <- quantile(qi_list[[x]][,'qi_'], prob = upper)
+            subset(qi_list[[x]], qi_ >= lower_bound & qi_ <= upper_bound)
+        })
+        qi_df <- do.call(rbind, qi_list)
+        qi_df$scenario_ <- NULL
+    }
+    return(qi_df)
 }

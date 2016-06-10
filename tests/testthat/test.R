@@ -34,8 +34,6 @@ test_that('b_sim output validity', {
 })
 
 # Test linear_systematic -------------------------------------------------------
-set.seed(100)
-
 # Linear model
 fitted_df <- expand.grid(education = 6:16, typewc = 1)
 ls_lm <- linear_systematic(b_sims = m1_sims, newdata = fitted_df)
@@ -44,14 +42,14 @@ ls_lm <- linear_systematic(b_sims = m1_sims, newdata = fitted_df)
 ls_coxph <- linear_systematic(sim_coxph, newdata = data.frame(x = 1))
 
 test_that('linear_systematic output validity', {
-    expect_equal(round(sum(ls_lm)), 492460)
-    expect_equal(round(sum(ls_coxph)), 815)
+    expect_equal(round(sum(ls_lm$ls_)), 492460)
+    expect_equal(round(sum(ls_coxph$ls_)), 800)
 })
 
 # Test qi_builder -------------------------------------------------------
 qi_linear <- qi_builder(b_sims = m1_sims, newdata = fitted_df)
 
 test_that('qi_builder output validity', {
-    expect_equal(round(sum(qi_linear)), 492460)
+    expect_equal(round(sum(qi_linear$qi_)), 468114)
 })
 

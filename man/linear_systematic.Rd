@@ -4,6 +4,11 @@
 \alias{linear_systematic}
 \title{Find the systematic component in the linear form for fitted values in across
 each simulation (note largely for internal use in \code{\link{qi_builder}})}
+\source{
+King, Gary, Michael Tomz, and Jason Wittenberg. 2000. "Making the
+Most of Statistical Analyses: Improving Interpretation and Presentation."
+American Journal of Political Science 44(2): 341-55.
+}
 \usage{
 linear_systematic(b_sims, newdata, inc_intercept = TRUE)
 }
@@ -19,8 +24,10 @@ in \code{newdata} will be treated as fitted at 0.}
 lineary systematic component.}
 }
 \value{
-a vector of fitted linear systematic component estimates for all
-simulations.
+A data frame fitted values supplied in \code{newdata} and associated
+linear systematic component estimates for all simulationed coefficient
+estimates. The linear systematic components are included in a column
+named \code{ls_}.
 }
 \description{
 Find the systematic component in the linear form for fitted values in across
@@ -29,7 +36,6 @@ each simulation (note largely for internal use in \code{\link{qi_builder}})
 \examples{
 library(car)
 
-#### Linear Model ####
 # Estimate model
 m1 <- lm(prestige ~ education + type, data = Prestige)
 
@@ -42,10 +48,5 @@ m1_sims <- b_sim(m1, nsim = 1000)
 # Find linear systematic component for fitted values
 ls <- linear_systematic(b_sims = m1_sims, newdata = fitted_df)
 
-}
-\seealso{
-King, Gary, Michael Tomz, and Jason Wittenberg. 2000. "Making the
-Most of Statistical Analyses: Improving Interpretation and Presentation."
-American Journal of Political Science 44(2): 341-55.
 }
 
