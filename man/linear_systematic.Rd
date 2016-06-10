@@ -3,7 +3,7 @@
 \name{linear_systematic}
 \alias{linear_systematic}
 \title{Find the systematic component in the linear form for fitted values in across
-each simulation}
+each simulation (note largely for internal use in \code{\link{qi_builder}})}
 \usage{
 linear_systematic(b_sims, newdata, inc_intercept = TRUE)
 }
@@ -24,11 +24,12 @@ simulations.
 }
 \description{
 Find the systematic component in the linear form for fitted values in across
-each simulation
+each simulation (note largely for internal use in \code{\link{qi_builder}})
 }
 \examples{
 library(car)
 
+#### Linear Model ####
 # Estimate model
 m1 <- lm(prestige ~ education + type, data = Prestige)
 

@@ -16,11 +16,31 @@ linear regression model is assumed and the predicted values are returned
 (e.g. the fitted linear systematic component from
 \code{\link{linear_systematic}}).}
 
-\item{model}{a function for calculating how}
+\item{model}{a function for calculating how to find the quantity of interest
+from a vector of the fitted linear systematic component.}
 
 \item{...}{arguments to pass to \code{\link{linear_systematic}}}
+
+\item{ci}{the}
+}
+\value{
+A vector of estimated quantities of interest for all simulations.
 }
 \description{
 Find quantities of interest from generalized linear models
+}
+\examples{
+library(car)
+
+# Estimate model
+m1 <- lm(prestige ~ education + type, data = Prestige)
+# Simulate coefficients
+m1_sims <- b_sim(m1)
+
+# Create fitted values
+fitted_df_1 <- expand.grid(education = 6:16, typewc = 1)
+
+linear_qi <- qi_builder(b_sims = m1_sims, newdata = fitted_df_1)
+
 }
 
