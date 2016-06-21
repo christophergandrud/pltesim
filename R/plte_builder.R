@@ -102,7 +102,7 @@ plte_builder <- function(obj, obj_tvar,
     ncs <- ncol(sims)
     sims <- cbind(sims[, c((ncs-1):ncs)], sims[, c(1:(ncs-2))])
 
-    class(sims) <- c('data.frame', 'pltsesim')
+    class(sims) <- c('data.frame', 'plte')
 
     return(sims)
 

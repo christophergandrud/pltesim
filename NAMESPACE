@@ -3,3 +3,5 @@
 export(btscs)
 export(logistic_prob_FUN)
 export(plte_builder)
+export(plte_plot)
+import(ggplot2)

@@ -16,6 +16,7 @@ License: GPL (>= 3)
 LazyData: TRUE
 RoxygenNote: 5.0.1
 Imports:
-    coreSim
+    coreSim,
+    ggplot2
 Suggests:
     testthat
