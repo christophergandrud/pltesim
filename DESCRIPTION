@@ -5,7 +5,7 @@ Title: Simulate Probabilistic Long-term Effects in Models with Temporal
 Description: Simulate probabilistic long-term effects in models with temporal
     dependence.
 Version: 0.1.0
-Date: 2016-06-15
+Date: 2016-06-21
 Authors@R: c(
     person("Christopher", "Gandrud", email = "christopher.gandrud@gmail.com",
     role = c("aut", "cre")),

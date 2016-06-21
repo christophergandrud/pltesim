@@ -14,8 +14,7 @@
 #' @examples
 #' data('negative')
 #'
-#' neg_set <- pltesim::btscs(df = negative, event = 'y', t_var = 'tim',
-#'                           cs_unit = 'group')
+#' neg_set <- btscs(df = negative, event = 'y', t_var = 'tim', cs_unit = 'group')
 #'
 #' @source This function is a port of Dave Armstrong's \code{btscs} function
 #' from:

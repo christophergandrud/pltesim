@@ -45,8 +45,7 @@ Generate spells for binary variables
 \examples{
 data('negative')
 
-neg_set <- pltesim::btscs(df = negative, event = 'y', t_var = 'tim',
-                          cs_unit = 'group')
+neg_set <- btscs(df = negative, event = 'y', t_var = 'tim', cs_unit = 'group')
 
 }
 
