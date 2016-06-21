@@ -78,8 +78,8 @@ plte_builder <- function(obj, obj_tvar,
         cf <- rbind(baseline, cf, df_repeat(baseline, npost_base - 1))
     }
     else if (is.numeric(cf_duration)) { # temporary
-        cf <- rbind(baseline, df_repeat(cf, cf_duration),
-                    df_repeat(baseline, npost_base - cf_duration))
+        cf <- rbind(df_repeat(baseline, 2), df_repeat(cf, cf_duration),
+                    df_repeat(baseline, npost_base - (cf_duration + 1)))
     }
 
     scenarios <- list(baseline = data.frame(cf, t_no_events),
@@ -91,19 +91,27 @@ plte_builder <- function(obj, obj_tvar,
         temp <- scenarios[[i]]
         names(temp) <- c(names(temp)[-ncol(temp)], obj_tvar)
 
-        temp_sims <- qi_builder(obj = obj, newdata = temp, FUN = FUN,
-                           ci = ci, nsim = nsim, slim = TRUE,
-                           original_order = TRUE)
+        temp_sims <- data.frame()
+        for (u in 1:nrow(temp)) {
+            temp_1 <- temp[u, ]
+            temp_1 <- qi_builder(obj = obj, newdata = temp_1, FUN = FUN,
+                                    ci = ci, nsim = nsim, slim = TRUE,
+                                    original_order = TRUE)
+            temp_sims <- rbind(temp_sims, temp_1)
+        }
         temp_sims$scenario_name <- names(scenarios)[i]
         temp_sims$scenario_time <- 1:nrow(temp_sims)
         sims <- rbind(sims, temp_sims)
+ #       for (u in c('qi_min', 'qi_median', 'qi_max')) {
+  #          sims[, u][sims[, obj_tvar] == 0] <- NA
+   #     }
     }
 
     ncs <- ncol(sims)
     sims <- cbind(sims[, c((ncs-1):ncs)], sims[, c(1:(ncs-2))])
 
     class(sims) <- c('data.frame', 'plte')
-
+    attr(sims, 'obj_tvar') <- obj_tvar
     return(sims)
 
 }

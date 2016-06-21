@@ -4,10 +4,13 @@
 \alias{plte_plot}
 \title{Plot objects created by plte_builder}
 \usage{
-plte_plot(obj, ...)
+plte_plot(obj, difference = FALSE)
 }
 \arguments{
 \item{obj}{a \code{plte} class object created by \code{\link{plte_builder}}.}
+
+\item{difference}{logical whether or not to plot the difference between the
+counterfactual and baseline probabilities.}
 }
 \description{
 Plot objects created by plte_builder
