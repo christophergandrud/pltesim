@@ -15,4 +15,27 @@ counterfactual and baseline probabilities.}
 \description{
 Plot objects created by plte_builder
 }
+\examples{
+data('negative')
+
+# BTSCS set the data
+neg_set <- btscs(df = negative, event = 'y', t_var = 'tim',
+                 cs_unit = 'group', pad_ts = FALSE)
+                 # Create temporal dependence variables
+neg_set$t <- neg_set$spell + 1
+
+m1 <- glm(y ~ x + t + I(t^2) + I(t^3),
+          family = binomial(link = 'logit'),
+          data = neg_set)
+
+counterfactual <- data.frame(x = 0.5)
+
+sim1 <- plte_builder(obj = m1, obj_tvar = 't',
+                     cf = counterfactual, t_points = c(13, 26),
+                     cf_duration = 3, ci = 99)
+
+plte_plot(sim1)
+
+
+}
 

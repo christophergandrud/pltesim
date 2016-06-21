@@ -23,9 +23,45 @@
 #' @param ci the proportion of the central interval of the simulations to
 #' return. Must be in (0, 1] or equivalently (0, 100].
 #'
+#' @examples
+#' data('negative')
+#'
+#' # BTSCS set the data
+#' neg_set <- btscs(df = negative, event = 'y', t_var = 'tim',
+#'                 cs_unit = 'group', pad_ts = FALSE)
+#'
+#' # Create temporal dependence variable
+#' neg_set$t <- neg_set$spell + 1
+#'
+#' m1 <- glm(y ~ x + t + I(t^2) + I(t^3),
+#'           family = binomial(link = 'logit'), data = neg_set)
+#'
+#' # Create fitted counterfactual
+#' counterfactual <- data.frame(x = 0.5)
+#'
+#' # Permanent counterfactual, one event
+#' sim1 <- plte_builder(obj = m1, obj_tvar = 't',
+#'                      cf = counterfactual, t_points = c(13, 28))
+#'
+#' # Multiple events
+#' sim2 <- plte_builder(obj = m1, obj_tvar = 't',
+#'                      cf = counterfactual, t_points = c(13, 18, 28))
+#'
+#' # One-time counterfactual
+#' sim3 <- plte_builder(obj = m1, obj_tvar = 't',
+#'                      cf = counterfactual, t_points = c(13, 28),
+#'                      cf_duration = 'one-time')
+#'
+#' # Temporary (3 period counterfactual)
+#' sim4 <- plte_builder(obj = m1, obj_tvar = 't',
+#'                      cf = counterfactual, t_points = c(13, 28),
+#'                      cf_duration = 3)
+#'
 #' @source
 #' Williams, Laron K. 2016. "Long-Term Effects in Models with Temporal
 #' Dependence". Political Analysis: 1-20.
+#'
+#' @importFrom coreSim qi_builder
 #'
 #' @export
 
