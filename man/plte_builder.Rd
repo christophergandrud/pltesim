@@ -5,7 +5,7 @@
 \title{Create simulations for long-term effects in models with temporal dependence}
 \source{
 Williams, Laron K. 2016. "Long-Term Effects in Models with Temporal
-Dependence". Political Analysis: 1-20.
+Dependence". Political Analysis: 24(2): 243-262.
 }
 \usage{
 plte_builder(obj, obj_tvar, cf, cf_duration = "permanent", t_points,
@@ -63,20 +63,20 @@ counterfactual <- data.frame(x = 0.5)
 
 # Permanent counterfactual, one event
 sim1 <- plte_builder(obj = m1, obj_tvar = 't',
-                     cf = counterfactual, t_points = c(13, 28))
+                     cf = counterfactual, t_points = c(13, 25))
 
 # Multiple events
 sim2 <- plte_builder(obj = m1, obj_tvar = 't',
-                     cf = counterfactual, t_points = c(13, 18, 28))
+                     cf = counterfactual, t_points = c(13, 18, 25))
 
 # One-time counterfactual
 sim3 <- plte_builder(obj = m1, obj_tvar = 't',
-                     cf = counterfactual, t_points = c(13, 28),
+                     cf = counterfactual, t_points = c(13, 25),
                      cf_duration = 'one-time')
 
 # Temporary (3 period counterfactual)
 sim4 <- plte_builder(obj = m1, obj_tvar = 't',
-                     cf = counterfactual, t_points = c(13, 28),
+                     cf = counterfactual, t_points = c(13, 25),
                      cf_duration = 3)
 
 }

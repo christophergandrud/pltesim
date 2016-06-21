@@ -20,7 +20,7 @@
 #' counterfactual <- data.frame(x = 0.5)
 #'
 #' sim1 <- plte_builder(obj = m1, obj_tvar = 't',
-#'                      cf = counterfactual, t_points = c(13, 26),
+#'                      cf = counterfactual, t_points = c(13, 25),
 #'                      cf_duration = 3, ci = 99)
 #'
 #' plte_plot(sim1)
@@ -37,7 +37,10 @@ plte_plot <- function(obj, difference = FALSE)
     if (!inherits(obj, 'plte'))
         stop('obj must be plte class created by plte_builder.', call. = FALSE)
 
-    names(obj)[names(obj) == attr(obj, 'obj_tvar')] <- 't__'
+    ot <- attr(obj, 'obj_tvar')
+    names(obj)[names(obj) == ot] <- 't__'
+    obj[1, 't__'] <- ''
+
     sims <- subset(obj, !(scenario_name == 'counterfactual' & scenario_time < 3))
 
     sims$scenario_name <- factor(sims$scenario_name,
@@ -48,8 +51,9 @@ plte_plot <- function(obj, difference = FALSE)
         geom_pointrange(aes(ymin = qi_min, ymax = qi_max,
                             linetype = scenario_name),
                         position = position_dodge(width = 0.5)) +
-        geom_text(aes(label = t__), hjust = -2, vjust = -1, alpha = 0.5) +
+        geom_text(aes(label = t__), hjust = -1.5, vjust = -1, alpha = 0.5) +
         scale_linetype_discrete(name = 'Counterfactual') +
+        scale_x_continuous(breaks = 1:2, labels = c('Baseline', 't')) +
         xlab('') +
         theme_bw()
 

@@ -41,25 +41,25 @@
 #'
 #' # Permanent counterfactual, one event
 #' sim1 <- plte_builder(obj = m1, obj_tvar = 't',
-#'                      cf = counterfactual, t_points = c(13, 28))
+#'                      cf = counterfactual, t_points = c(13, 25))
 #'
 #' # Multiple events
 #' sim2 <- plte_builder(obj = m1, obj_tvar = 't',
-#'                      cf = counterfactual, t_points = c(13, 18, 28))
+#'                      cf = counterfactual, t_points = c(13, 18, 25))
 #'
 #' # One-time counterfactual
 #' sim3 <- plte_builder(obj = m1, obj_tvar = 't',
-#'                      cf = counterfactual, t_points = c(13, 28),
+#'                      cf = counterfactual, t_points = c(13, 25),
 #'                      cf_duration = 'one-time')
 #'
 #' # Temporary (3 period counterfactual)
 #' sim4 <- plte_builder(obj = m1, obj_tvar = 't',
-#'                      cf = counterfactual, t_points = c(13, 28),
+#'                      cf = counterfactual, t_points = c(13, 25),
 #'                      cf_duration = 3)
 #'
 #' @source
 #' Williams, Laron K. 2016. "Long-Term Effects in Models with Temporal
-#' Dependence". Political Analysis: 1-20.
+#' Dependence". Political Analysis: 24(2): 243-262.
 #'
 #' @importFrom coreSim qi_builder
 #'

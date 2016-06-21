@@ -11,8 +11,7 @@ Christopher Gandrud and Laron K. Williams
 
 These examples replicate Figure 1 in [Williams (2016)](http://pan.oxfordjournals.org/content/24/2/243).
 
-
-```r
+```{r}
 library(pltesim)
 library(ggplot2)
 
@@ -38,26 +37,17 @@ sim1 <- plte_builder(obj = m1, obj_tvar = 't',
                      cf = counterfactual, t_points = c(13, 25))
 
 plte_plot(sim1) + ggtitle('Permanent')
-```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png)
 
-```r
 # One-time
 sim2 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 'one-time',
                      cf = counterfactual, t_points = c(13, 25))
 
 plte_plot(sim2) + ggtitle('One-time')
-```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-2.png)
-
-```r
 # Temporary
 sim3 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 3,
                      cf = counterfactual, t_points = c(13, 25))
 
 plte_plot(sim3) + ggtitle('Temporary')
 ```
-
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-3.png)

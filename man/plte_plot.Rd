@@ -31,7 +31,7 @@ m1 <- glm(y ~ x + t + I(t^2) + I(t^3),
 counterfactual <- data.frame(x = 0.5)
 
 sim1 <- plte_builder(obj = m1, obj_tvar = 't',
-                     cf = counterfactual, t_points = c(13, 26),
+                     cf = counterfactual, t_points = c(13, 25),
                      cf_duration = 3, ci = 99)
 
 plte_plot(sim1)
