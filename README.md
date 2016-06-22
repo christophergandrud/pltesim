@@ -58,7 +58,7 @@ Then we fit the counterfactual:
 counterfactual <- data.frame(x = 0.5)
 ```
 
-Now we can simulate and plot long-term effects for a variety of scenarios using `plte_builder` and `plte_plot`. `plte_builder` takes as its input the fitted model object with our estimated coefficients (`obj`), an identification of the basic time period variable (`obj_tvar`), the counterfactual (`cf`), how long the counterfactual persists (`cf_duration`, `permanent` by default), and the time period points over which to simulate the effects. Note that by default the predicted probabilities from logistic regression models are found. You can specify a custom quantity of interest function with the `FUN` argument. 
+Now we can simulate and plot long-term effects for a variety of scenarios using `plte_builder` and `plte_plot`. `plte_builder` takes as its input the fitted model object with our estimated coefficients (`obj`), an identification of the basic time period variable (`obj_tvar`), the counterfactual (`cf`), how long the counterfactual persists (`cf_duration`, it is `permanent` by default), and the time period points over which to simulate the effects. Note that by default the predicted probabilities from logistic regression models are found. You can specify a custom quantity of interest function with the `FUN` argument. 
 
 In the first the counterfactual is persistent throughout the entire time span:
 
@@ -67,13 +67,7 @@ In the first the counterfactual is persistent throughout the entire time span:
 # Permanent
 sim1 <- plte_builder(obj = m1, obj_tvar = 't',
                      cf = counterfactual, t_points = c(13, 25))
-```
 
-```
-## Error in obj[, "obj_tvar"] <- NULL: incorrect number of subscripts on matrix
-```
-
-```r
 plte_plot(sim1) + ggtitle('Permanent')
 ```
 
@@ -86,13 +80,7 @@ Now the effect only exists for one time-period:
 # One-time
 sim2 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 'one-time',
                      cf = counterfactual, t_points = c(13, 25))
-```
 
-```
-## Error in obj[, "obj_tvar"] <- NULL: incorrect number of subscripts on matrix
-```
-
-```r
 plte_plot(sim2) + ggtitle('One-time')
 ```
 
@@ -105,13 +93,7 @@ We can also have it last for short periods of time or simulate the effect if ano
 # Temporary
 sim3 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 4,
                      cf = counterfactual, t_points = c(13, 25))
-```
 
-```
-## Error in obj[, "obj_tvar"] <- NULL: incorrect number of subscripts on matrix
-```
-
-```r
 plte_plot(sim3) + ggtitle('Temporary')
 ```
 
@@ -121,13 +103,7 @@ plte_plot(sim3) + ggtitle('Temporary')
 # Multiple events, permanent counter factual
 sim4 <- plte_builder(obj = m1, obj_tvar = 't',
                      cf = counterfactual, t_points = c(13, 20, 25))
-```
 
-```
-## Error in obj[, "obj_tvar"] <- NULL: incorrect number of subscripts on matrix
-```
-
-```r
 plte_plot(sim4) + ggtitle('Permanent, Multiple Events')
 ```
 
