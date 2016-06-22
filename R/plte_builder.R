@@ -74,8 +74,11 @@ plte_builder <- function(obj, obj_tvar,
     # Create scenarios to simulate ---------------------------------------------
     if (missing(obj_tvar))
         stop('obj_tvar must be specified.', call. = FALSE)
-    obj[, 'obj_tvar'] <- NULL
-
+    if (obj_tvar %in% colnames(obj)) {
+        message('It is not necessary to include the time variable in cf.',
+                call. = FALSE)
+        obj[, obj_tvar] <- NULL
+    }
 
     if (length(t_points) < 2)
         stop('Must specify at least two t_range values.', call. = FALSE)
@@ -151,5 +154,3 @@ plte_builder <- function(obj, obj_tvar,
     return(sims)
 
 }
-
-
