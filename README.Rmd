@@ -11,7 +11,7 @@ Christopher Gandrud and Laron K. Williams
 
 These examples replicate Figure 1 in [Williams (2016)](http://pan.oxfordjournals.org/content/24/2/243).
 
-```{r}
+```{r, fig.width=12}
 library(pltesim)
 library(ggplot2)
 

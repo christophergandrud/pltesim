@@ -54,7 +54,7 @@ plte_plot <- function(obj, t_labels = TRUE)
 
     p <- ggplot(sims, aes(x = scenario_time, y = qi_median,
                           group = scenario_name)) +
-        geom_pointrange(aes(ymin = qi_min, ymax = qi_max,
+        geom_linerange(aes(ymin = qi_min, ymax = qi_max,
                             linetype = scenario_name),
                         position = position_dodge(width = 0.3)) +
         scale_linetype_discrete(name = 'Counterfactual') +
@@ -62,8 +62,8 @@ plte_plot <- function(obj, t_labels = TRUE)
         xlab('') + ylab('Pr(Y = 1)\n') +
         theme_bw()
 
-    if (t_labels)
-        p <- p + geom_text(aes(label = t__), alpha = 0.5, nudge_x = 0.3)
+    if (t_labels) p <- p + geom_label(aes(label = t__))
+    else p <- p + geom_point()
 
     p
 }
