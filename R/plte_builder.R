@@ -55,7 +55,7 @@
 #' # Temporary (3 period counterfactual)
 #' sim4 <- plte_builder(obj = m1, obj_tvar = 't',
 #'                      cf = counterfactual, t_points = c(13, 25),
-#'                      cf_duration = 3)
+#'                      cf_duration = 4)
 #'
 #' @source
 #' Williams, Laron K. 2016. "Long-Term Effects in Models with Temporal
@@ -114,8 +114,8 @@ plte_builder <- function(obj, obj_tvar,
         cf <- rbind(baseline, cf, df_repeat(baseline, npost_base - 1))
     }
     else if (is.numeric(cf_duration)) { # temporary
-        cf <- rbind(df_repeat(baseline, 2), df_repeat(cf, cf_duration),
-                    df_repeat(baseline, npost_base - (cf_duration + 1)))
+        cf <- rbind(df_repeat(baseline, 1), df_repeat(cf, cf_duration),
+                    df_repeat(baseline, npost_base - cf_duration))
     }
 
     scenarios <- list(baseline = data.frame(cf, t_no_events),

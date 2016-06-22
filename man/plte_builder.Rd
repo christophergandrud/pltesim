@@ -77,7 +77,7 @@ sim3 <- plte_builder(obj = m1, obj_tvar = 't',
 # Temporary (3 period counterfactual)
 sim4 <- plte_builder(obj = m1, obj_tvar = 't',
                      cf = counterfactual, t_points = c(13, 25),
-                     cf_duration = 3)
+                     cf_duration = 4)
 
 }
 

@@ -35,7 +35,7 @@ counterfactual <- data.frame(x = 0.5)
 
 sim1 <- plte_builder(obj = m1, obj_tvar = 't',
                      cf = counterfactual, t_points = c(13, 25),
-                     cf_duration = 3, ci = 99)
+                     cf_duration = 4, ci = 99)
 
 # With time point labels
 plte_plot(sim1)
