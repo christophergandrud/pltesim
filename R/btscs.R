@@ -64,7 +64,7 @@ btscs <- function (df, event, t_var, cs_unit, pad_ts = FALSE)
                                                  max(x[[t_var]], na.rm = TRUE)),
                                              x[[t_var]]),
                                        ])
-        for (i in 1:length(sp)) {
+        for (i in seq_along(sp)) {
             if (any(is.na(sp[[i]][[event]]))) {
                 sp[[i]][[event]][which(is.na(sp[[i]][[event]]))] <- 1
             }
@@ -78,7 +78,7 @@ btscs <- function (df, event, t_var, cs_unit, pad_ts = FALSE)
             }
         }
     }
-    sp <- lapply(1:length(sp), function(x) {
+    sp <- lapply(seq_along(sp), function(x) {
         cbind(sp[[x]], data.frame(spell = spells(sp[[x]][[event]])),
               row.names = NULL)
     })

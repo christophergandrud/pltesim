@@ -92,7 +92,7 @@ plte_builder <- function(obj, obj_tvar,
 
     if (length(t_points) == 3) {
         temp <- t_no_events
-        for (u in 1:length(temp)) {
+        for (u in seq_along(temp)) {
             if (t_points[2] <= temp[u]) temp[u] <- temp[u] - t_points[2]
             if (temp[u] < t_change[u]) t_change[u] <- temp[u]
         }
