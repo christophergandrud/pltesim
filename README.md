@@ -54,10 +54,20 @@ plte_plot(sim2) + ggtitle('One-time')
 
 ```r
 # Temporary
-sim3 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 3,
+sim3 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 4,
                      cf = counterfactual, t_points = c(13, 25))
 
 plte_plot(sim3) + ggtitle('Temporary')
 ```
 
 ![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-3.png)
+
+```r
+# Multiple events, permanent counter factual
+sim4 <- plte_builder(obj = m1, obj_tvar = 't',
+                     cf = counterfactual, t_points = c(13, 20, 25))
+
+plte_plot(sim4) + ggtitle('Permanent, Multiple Events')
+```
+
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-4.png)

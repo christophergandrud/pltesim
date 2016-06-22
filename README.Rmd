@@ -46,8 +46,15 @@ sim2 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 'one-time',
 plte_plot(sim2) + ggtitle('One-time')
 
 # Temporary
-sim3 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 3,
+sim3 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 4,
                      cf = counterfactual, t_points = c(13, 25))
 
 plte_plot(sim3) + ggtitle('Temporary')
+
+
+# Multiple events, permanent counter factual
+sim4 <- plte_builder(obj = m1, obj_tvar = 't',
+                     cf = counterfactual, t_points = c(13, 20, 25))
+
+plte_plot(sim4) + ggtitle('Permanent, Multiple Events')
 ```
