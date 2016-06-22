@@ -138,9 +138,6 @@ plte_builder <- function(obj, obj_tvar,
         temp_sims$scenario_name <- names(scenarios)[i]
         temp_sims$scenario_time <- 1:nrow(temp_sims)
         sims <- rbind(sims, temp_sims)
- #       for (u in c('qi_min', 'qi_median', 'qi_max')) {
-  #          sims[, u][sims[, obj_tvar] == 0] <- NA
-   #     }
     }
 
     ncs <- ncol(sims)

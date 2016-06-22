@@ -1,6 +1,6 @@
 # pltesim
 
-Simulate Probabilistic Long-term Effects in Models with Temporal
+Simulate **P**robabilistic **L**ong-**t**erm **E**ffects in Models with Temporal
 Dependence
 
 Christopher Gandrud and Laron K. Williams

@@ -2,8 +2,9 @@
 #'
 #' @param obj a \code{plte} class object created by \code{\link{plte_builder}}.
 #' @param t_labels logical whether or not to include time labels for each point.
-#' @param difference logical whether or not to plot the difference between the
-#' counterfactual and baseline probabilities.
+#'
+#' @return A \code{gg} ggplot2 object that can be modified using the
+#' \code{+} in combination with other ggplot2 functions.
 #'
 #' @examples
 #' data('negative')
@@ -24,14 +25,18 @@
 #'                      cf = counterfactual, t_points = c(13, 25),
 #'                      cf_duration = 3, ci = 99)
 #'
+#' # With time point labels
 #' plte_plot(sim1)
+#'
+#' # Without time point labels
+#' plte_plot(sim1, t_labels = FALSE)
 #'
 #'
 #' @import ggplot2
 #'
 #' @export
 
-plte_plot <- function(obj, t_labels = TRUE, difference = FALSE)
+plte_plot <- function(obj, t_labels = TRUE)
 {
     scenario_name <- scenario_time <- qi_median <- qi_min <- qi_max <- t__ <- NULL
 
@@ -54,14 +59,11 @@ plte_plot <- function(obj, t_labels = TRUE, difference = FALSE)
                         position = position_dodge(width = 0.3)) +
         scale_linetype_discrete(name = 'Counterfactual') +
         scale_x_continuous(breaks = 1:2, labels = c('Baseline', 't')) +
-        xlab('') +
+        xlab('') + ylab('Pr(Y = 1)\n') +
         theme_bw()
 
     if (t_labels)
         p <- p + geom_text(aes(label = t__), alpha = 0.5, nudge_x = 0.3)
 
-    if (!isTRUE(difference)) {
-        p <- p + ylab('Pr(Y = 1)\n')
-    }
     p
 }

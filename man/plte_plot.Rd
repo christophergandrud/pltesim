@@ -4,15 +4,16 @@
 \alias{plte_plot}
 \title{Plot objects created by plte_builder}
 \usage{
-plte_plot(obj, t_labels = TRUE, difference = FALSE)
+plte_plot(obj, t_labels = TRUE)
 }
 \arguments{
 \item{obj}{a \code{plte} class object created by \code{\link{plte_builder}}.}
 
 \item{t_labels}{logical whether or not to include time labels for each point.}
-
-\item{difference}{logical whether or not to plot the difference between the
-counterfactual and baseline probabilities.}
+}
+\value{
+A \code{gg} ggplot2 object that can be modified using the
+\code{+} in combination with other ggplot2 functions.
 }
 \description{
 Plot objects created by plte_builder
@@ -36,7 +37,11 @@ sim1 <- plte_builder(obj = m1, obj_tvar = 't',
                      cf = counterfactual, t_points = c(13, 25),
                      cf_duration = 3, ci = 99)
 
+# With time point labels
 plte_plot(sim1)
+
+# Without time point labels
+plte_plot(sim1, t_labels = FALSE)
 
 
 }
