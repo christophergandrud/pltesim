@@ -1,4 +1,5 @@
-# pltesim
+
+![](img/pltsesim_logo_annimation.gif)
 
 Simulate **P**robabilistic **L**ong-**t**erm **E**ffects in Models with Temporal
 Dependence
