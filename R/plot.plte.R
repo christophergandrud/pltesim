@@ -1,6 +1,7 @@
 #' Plot objects created by plte_builder
 #'
 #' @param obj a \code{plte} class object created by \code{\link{plte_builder}}.
+#' @param t_labels logical whether or not to include time labels for each point.
 #' @param difference logical whether or not to plot the difference between the
 #' counterfactual and baseline probabilities.
 #'
@@ -30,7 +31,7 @@
 #'
 #' @export
 
-plte_plot <- function(obj, difference = FALSE)
+plte_plot <- function(obj, t_labels = TRUE, difference = FALSE)
 {
     scenario_name <- scenario_time <- qi_median <- qi_min <- qi_max <- t__ <- NULL
 
@@ -50,15 +51,17 @@ plte_plot <- function(obj, difference = FALSE)
                           group = scenario_name)) +
         geom_pointrange(aes(ymin = qi_min, ymax = qi_max,
                             linetype = scenario_name),
-                        position = position_dodge(width = 0.5)) +
-        geom_text(aes(label = t__), hjust = -1.5, vjust = -1, alpha = 0.5) +
+                        position = position_dodge(width = 0.3)) +
         scale_linetype_discrete(name = 'Counterfactual') +
         scale_x_continuous(breaks = 1:2, labels = c('Baseline', 't')) +
         xlab('') +
         theme_bw()
 
+    if (t_labels)
+        p <- p + geom_text(aes(label = t__), alpha = 0.5, nudge_x = 0.3)
+
     if (!isTRUE(difference)) {
-        p <- p + ylab('Pr(Y = 1)')
+        p <- p + ylab('Pr(Y = 1)\n')
     }
     p
 }

@@ -4,10 +4,12 @@
 \alias{plte_plot}
 \title{Plot objects created by plte_builder}
 \usage{
-plte_plot(obj, difference = FALSE)
+plte_plot(obj, t_labels = TRUE, difference = FALSE)
 }
 \arguments{
 \item{obj}{a \code{plte} class object created by \code{\link{plte_builder}}.}
+
+\item{t_labels}{logical whether or not to include time labels for each point.}
 
 \item{difference}{logical whether or not to plot the difference between the
 counterfactual and baseline probabilities.}
