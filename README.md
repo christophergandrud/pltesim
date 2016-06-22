@@ -14,12 +14,12 @@ Version: 0.1.0 [![Build Status](https://travis-ci.org/christophergandrud/pltesim
 
 To find and show probabilistic long-term effects in models with temporal dependence with **pltesim**:
 
-1. Find your coefficient estimates by estimating your model. Currently **pltesim** works with
+1. Estimate the coefficients. Currently **pltesim** works with
 binary outcome models, e.g. logit, so use `glm` from the default R installation.
 
 2. Create a data frame with your counterfactual. This should have one row and 
 columns with names matching those in your fitted model. All variables without 
-values will be treated as 0 in the counterfactual. It should also not include
+values will be treated as 0 in the counterfactual. It need not include
 the time period variable as this will be handled separately.
 
 3. Simulate the long-term effects with `plte_builder`. 
@@ -50,17 +50,18 @@ m1 <- glm(y ~ x + t + I(t^2) + I(t^3),
           data = neg_set)
 ```
 
-Then we fit the counterfactual:
+Then fit the counterfactual:
 
 
 ```r
-# Fit counterfactuals
 counterfactual <- data.frame(x = 0.5)
 ```
 
-Now we can simulate and plot long-term effects for a variety of scenarios using `plte_builder` and `plte_plot`. `plte_builder` takes as its input the fitted model object with our estimated coefficients (`obj`), an identification of the basic time period variable (`obj_tvar`), the counterfactual (`cf`), how long the counterfactual persists (`cf_duration`, it is `permanent` by default), and the time period points over which to simulate the effects. Note that by default the predicted probabilities from logistic regression models are found. You can specify a custom quantity of interest function with the `FUN` argument. 
+Now simulate and plot long-term effects for a variety of scenarios using `plte_builder` and `plte_plot`. `plte_builder` takes as its input the fitted model object with the estimated coefficients (`obj`), an identification of the basic time period variable (`obj_tvar`), the counterfactual (`cf`), how long the counterfactual persists (`cf_duration`, it is `permanent` by default), and the time period points over which to simulate the effects. 
 
-In the first the counterfactual is persistent throughout the entire time span:
+Note that by default the predicted probabilities from logistic regression models are found. You can specify a custom quantity of interest function with the `FUN` argument. 
+
+In this first example the counterfactual is persistent throughout the entire time span:
 
 
 ```r
@@ -73,7 +74,7 @@ plte_plot(sim1) + ggtitle('Permanent')
 
 ![plot of chunk perm](figure/perm-1.png)
 
-Now the effect only exists for one time-period:
+Now the effect only lasts for one time-period:
 
 
 ```r
@@ -86,7 +87,7 @@ plte_plot(sim2) + ggtitle('One-time')
 
 ![plot of chunk onetime](figure/onetime-1.png)
 
-We can also have it last for short periods of time or simulate the effect if another event occurs:
+We can also have it last for short periods of time and simulate the effect if another event occurs:
 
 
 ```r
