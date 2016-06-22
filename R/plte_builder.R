@@ -5,7 +5,8 @@
 #' in \code{obj}.
 #' @param cf a data frame with one row containing the counterfactual.
 #' Columns should have names that match variables in \code{obj} and contain
-#' fitted values to find quantities of interest for.
+#' fitted values to find quantities of interest for. Note, this should not
+#' include your time variable as this is handled using \code{t_points}.
 #' @param cf_duration a character string or numeric specifying the
 #' counterfactual's duration. If \code{'permanent'} then the
 #' counterfacutal lasts for the full time span in \code{t_points}. If
@@ -73,6 +74,8 @@ plte_builder <- function(obj, obj_tvar,
     # Create scenarios to simulate ---------------------------------------------
     if (missing(obj_tvar))
         stop('obj_tvar must be specified.', call. = FALSE)
+    obj[, 'obj_tvar'] <- NULL
+
 
     if (length(t_points) < 2)
         stop('Must specify at least two t_range values.', call. = FALSE)

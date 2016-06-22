@@ -19,7 +19,8 @@ in \code{obj}.}
 
 \item{cf}{a data frame with one row containing the counterfactual.
 Columns should have names that match variables in \code{obj} and contain
-fitted values to find quantities of interest for.}
+fitted values to find quantities of interest for. Note, this should not
+include your time variable as this is handled using \code{t_points}.}
 
 \item{cf_duration}{a character string or numeric specifying the
 counterfactual's duration. If \code{'permanent'} then the
