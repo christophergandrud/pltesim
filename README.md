@@ -1,7 +1,7 @@
 
 
 
-![](img/pltsesim_logo_annimation.gif)
+![](img/pltesim_logo_annimation.gif)
 
 Simulate **P**probabilistic **L**ong-**t**erm **E**ffects in Models with Temporal
 Dependence
@@ -9,6 +9,12 @@ Dependence
 Christopher Gandrud and Laron K. Williams
 
 Version: 0.1.0 [![Build Status](https://travis-ci.org/christophergandrud/pltesim.svg?branch=master)](https://travis-ci.org/christophergandrud/pltesim)
+
+# About
+
+**pltesim** implements [Williams's (2016)](http://pan.oxfordjournals.org/content/24/2/243) method for simulating probabilistic long-term effects in models with temporal dependence. 
+
+It is built on [coreSim](https://github.com/christophergandrud/coreSim).
 
 # Process
 
@@ -74,7 +80,7 @@ plte_plot(sim1) + ggtitle('Permanent')
 
 ![plot of chunk perm](figure/perm-1.png)
 
-Now the effect only lasts for one time-period:
+Now the effect only lasts for one time period:
 
 
 ```r
