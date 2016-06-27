@@ -89,5 +89,13 @@ counterfactual_baseline <- data.frame(x = c(1, 0.5))
 sim5 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 4,
                      cf = counterfactual_baseline, t_points = c(13, 25))
 
+# Time splines
+library(splines)
+m2 <- glm(y ~ x + bs(t, degree = 3), family = binomial(link = 'logit'),
+          data = neg_set)
+
+sim6 <- plte_builder(obj = m2, obj_tvar = 't', cf_duration = 4,
+                     cf = counterfactual, t_points = c(13, 25))
+
 }
 

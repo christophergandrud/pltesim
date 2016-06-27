@@ -67,6 +67,14 @@
 #' sim5 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 4,
 #'                      cf = counterfactual_baseline, t_points = c(13, 25))
 #'
+#' # Time splines
+#' library(splines)
+#' m2 <- glm(y ~ x + bs(t, degree = 3), family = binomial(link = 'logit'),
+#'           data = neg_set)
+#'
+#' sim6 <- plte_builder(obj = m2, obj_tvar = 't', cf_duration = 4,
+#'                      cf = counterfactual, t_points = c(13, 25))
+#'
 #' @source
 #' Williams, Laron K. 2016. "Long-Term Effects in Models with Temporal
 #' Dependence". Political Analysis: 24(2): 243-262.
@@ -83,7 +91,7 @@ plte_builder <- function(obj, obj_tvar,
     # Create scenarios to simulate ---------------------------------------------
     if (missing(obj_tvar))
         stop('obj_tvar must be specified.', call. = FALSE)
-    if (!(obj_tvar %in% names(obj$coefficients)))
+    if (!(obj_tvar %in% bs_stripper(names(obj$coefficients))))
         stop('Cannot find obj_tvar in the fitted model object.', call. = FALSE)
     if (obj_tvar %in% colnames(cf)) {
         message('It is not necessary to include the time variable in cf.',
@@ -118,7 +126,6 @@ plte_builder <- function(obj, obj_tvar,
     if (nrow_cf == 1) {
         make_zero <- function(x) x * 0
         baseline <- data.frame(apply(cf, 1, make_zero))
-
     }
     else if (nrow_cf == 2) {
         baseline <- data.frame(cf[2, ])
