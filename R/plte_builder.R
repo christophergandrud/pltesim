@@ -74,10 +74,12 @@ plte_builder <- function(obj, obj_tvar,
     # Create scenarios to simulate ---------------------------------------------
     if (missing(obj_tvar))
         stop('obj_tvar must be specified.', call. = FALSE)
-    if (obj_tvar %in% colnames(obj)) {
+    if (!(obj_tvar %in% names(obj$coefficients)))
+        stop('Cannot find obj_tvar in the fitted model object.', call. = FALSE)
+    if (obj_tvar %in% colnames(cf)) {
         message('It is not necessary to include the time variable in cf.',
                 call. = FALSE)
-        obj[, obj_tvar] <- NULL
+        cf[, obj_tvar] <- NULL
     }
 
     if (length(t_points) < 2)
