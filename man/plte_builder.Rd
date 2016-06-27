@@ -17,7 +17,9 @@ plte_builder(obj, obj_tvar, cf, cf_duration = "permanent", t_points,
 \item{obj_tvar}{character string specifying the name of the base time variable
 in \code{obj}.}
 
-\item{cf}{a data frame with one row containing the counterfactual.
+\item{cf}{a data frame with the first row containing the counterfactual.
+An optional second row could be supplied with values for the baseline
+scenario. If not supplied then all values are set to zero for the baseline.
 Columns should have names that match variables in \code{obj} and contain
 fitted values to find quantities of interest for. Note, this should not
 include your time variable as this is handled using \code{t_points}.}
@@ -75,10 +77,17 @@ sim3 <- plte_builder(obj = m1, obj_tvar = 't',
                      cf = counterfactual, t_points = c(13, 25),
                      cf_duration = 'one-time')
 
-# Temporary (3 period counterfactual)
+# Temporary (4 period counterfactual)
 sim4 <- plte_builder(obj = m1, obj_tvar = 't',
                      cf = counterfactual, t_points = c(13, 25),
                      cf_duration = 4)
+
+# Custom baseline scenario
+# Note: the second row is the custom baseline
+counterfactual_baseline <- data.frame(x = c(1, 0.5))
+
+sim5 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 4,
+                     cf = counterfactual_baseline, t_points = c(13, 25))
 
 }
 

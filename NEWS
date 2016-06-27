@@ -1,0 +1,4 @@
+# Version 0.1.1
+
+- Added ability to supply a custom baseline scenario to `plte_builder via
+the `cf` argument.

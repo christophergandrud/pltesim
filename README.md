@@ -115,3 +115,18 @@ plte_plot(sim4) + ggtitle('Permanent, Multiple Events')
 ```
 
 ![plot of chunk temp-multievent](figure/temp-multievent-2.png)
+
+By default the baseline scenario has all of the fitted values at 0. You can supply a custom baseline scenario in the second row of the counterfactual (`cf`) data frame. For example:
+
+
+```r
+# Custom baseline scenario
+counterfactual_baseline <- data.frame(x = c(1, 0.5))
+
+sim5 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 4,
+                     cf = counterfactual_baseline, t_points = c(13, 25))
+
+plte_plot(sim5) + ggtitle('Temporary, Custom Baseline')
+```
+
+![plot of chunk custom-baseline](figure/custom-baseline-1.png)

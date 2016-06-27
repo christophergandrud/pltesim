@@ -3,7 +3,9 @@
 #' @param obj a fitted model object.
 #' @param obj_tvar character string specifying the name of the base time variable
 #' in \code{obj}.
-#' @param cf a data frame with one row containing the counterfactual.
+#' @param cf a data frame with the first row containing the counterfactual.
+#' An optional second row could be supplied with values for the baseline
+#' scenario. If not supplied then all values are set to zero for the baseline.
 #' Columns should have names that match variables in \code{obj} and contain
 #' fitted values to find quantities of interest for. Note, this should not
 #' include your time variable as this is handled using \code{t_points}.
@@ -53,10 +55,17 @@
 #'                      cf = counterfactual, t_points = c(13, 25),
 #'                      cf_duration = 'one-time')
 #'
-#' # Temporary (3 period counterfactual)
+#' # Temporary (4 period counterfactual)
 #' sim4 <- plte_builder(obj = m1, obj_tvar = 't',
 #'                      cf = counterfactual, t_points = c(13, 25),
 #'                      cf_duration = 4)
+#'
+#' # Custom baseline scenario
+#' # Note: the second row is the custom baseline
+#' counterfactual_baseline <- data.frame(x = c(1, 0.5))
+#'
+#' sim5 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 4,
+#'                      cf = counterfactual_baseline, t_points = c(13, 25))
 #'
 #' @source
 #' Williams, Laron K. 2016. "Long-Term Effects in Models with Temporal
@@ -100,13 +109,23 @@ plte_builder <- function(obj, obj_tvar,
         }
     }
 
-    if (nrow(cf) != 1)
-        stop('cf must have only one row.', call. = FALSE)
+    nrow_cf <- nrow(cf)
+    if (!(nrow_cf %in% 1:2))
+        stop('cf must have only one or two rows.', call. = FALSE)
 
-    # Create baseline scenario
-    make_zero <- function(x) x * 0
-    baseline <- data.frame(apply(cf, 1, make_zero))
-    names(baseline) <- names(cf)
+    # Create baseline scenario if not supplied
+    names_cf <- names(cf)
+    if (nrow_cf == 1) {
+        make_zero <- function(x) x * 0
+        baseline <- data.frame(apply(cf, 1, make_zero))
+
+    }
+    else if (nrow_cf == 2) {
+        baseline <- data.frame(cf[2, ])
+        cf <- data.frame(cf[1, ])
+        names(cf) <- names_cf
+    }
+    names(baseline) <- names_cf
 
     # Find counterfactuals over time
     if (length(cf_duration) != 1)
@@ -115,7 +134,7 @@ plte_builder <- function(obj, obj_tvar,
     npost_base <- (t_end - t_start) + 1
 
     if (cf_duration == tolower('permanent')) {
-        post_base_cf <- df_repeat(cf, npost_base)
+        post_base_cf <- pltesim:::df_repeat(cf, npost_base)
         cf <- rbind(baseline, post_base_cf)
     }
     else if (cf_duration == tolower('one-time')) {
