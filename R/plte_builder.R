@@ -134,7 +134,7 @@ plte_builder <- function(obj, obj_tvar,
     npost_base <- (t_end - t_start) + 1
 
     if (cf_duration == tolower('permanent')) {
-        post_base_cf <- pltesim:::df_repeat(cf, npost_base)
+        post_base_cf <- df_repeat(cf, npost_base)
         cf <- rbind(baseline, post_base_cf)
     }
     else if (cf_duration == tolower('one-time')) {
