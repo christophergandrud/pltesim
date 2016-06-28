@@ -3,18 +3,18 @@
 
 ![](img/pltesim_logo_annimation.gif)
 
-Simulate **P**robabilistic **L**ong-**t**erm **E**ffects in Models with Temporal
-Dependence
+> R package to simulate **P**robabilistic **L**ong-**T**erm **E**ffects in models with temporal dependence
 
 Christopher Gandrud and Laron K. Williams
 
-Version: 0.1.0 [![Build Status](https://travis-ci.org/christophergandrud/pltesim.svg?branch=master)](https://travis-ci.org/christophergandrud/pltesim)
+Version: 0.1.1 [![Build Status](https://travis-ci.org/christophergandrud/pltesim.svg?branch=master)](https://travis-ci.org/christophergandrud/pltesim)
 
 # About
 
 **pltesim** implements [Williams's (2016)](http://pan.oxfordjournals.org/content/24/2/243) method for simulating probabilistic long-term effects in models with temporal dependence. 
 
-It is built on [coreSim](https://github.com/christophergandrud/coreSim).
+It is built on the [coreSim](https://github.com/christophergandrud/coreSim) 
+package.
 
 # Process
 
@@ -23,10 +23,7 @@ To find and show probabilistic long-term effects in models with temporal depende
 1. Estimate the coefficients. Currently **pltesim** works with
 binary outcome models, e.g. logit, so use `glm` from the default R installation.
 
-2. Create a data frame with your counterfactual. This should have one row and 
-columns with names matching those in your fitted model. All variables without 
-values will be treated as 0 in the counterfactual. It need not include
-the time period variable as this will be handled separately.
+2. Create a data frame with your counterfactual. This should have a row with the fitted counterfactual values and columns with names matching those in your fitted model. All variables without values will be treated as 0 in the counterfactual.
 
 3. Simulate the long-term effects with `plte_builder`. 
 
@@ -80,7 +77,10 @@ plte_plot(sim1) + ggtitle('Permanent')
 
 ![plot of chunk perm](figure/perm-1.png)
 
-Now the effect only lasts for one time period:
+Note that the numbers next to each simulation point indicate the time since
+the last event. You can choose to not show these numbers by setting `t_labels = FALSE` in the `plte_plot` call.
+
+In the next example, the effect only lasts for one time period:
 
 
 ```r
@@ -93,7 +93,7 @@ plte_plot(sim2) + ggtitle('One-time')
 
 ![plot of chunk onetime](figure/onetime-1.png)
 
-We can also have it last for short periods of time and simulate the effect if another event occurs:
+We can also have the counterfactual effect last for short periods of time and simulate the effect if another event occurs:
 
 
 ```r
@@ -116,7 +116,7 @@ plte_plot(sim4) + ggtitle('Permanent, Multiple Events')
 
 ![plot of chunk temp-multievent](figure/temp-multievent-2.png)
 
-By default the baseline scenario has all of the fitted values at 0. You can supply a custom baseline scenario in the second row of the counterfactual (`cf`) data frame. For example:
+By default the baseline scenario has all covariate values fitted at 0. You can supply a custom baseline scenario in the second row of the counterfactual (`cf`) data frame. For example:
 
 
 ```r
@@ -130,3 +130,13 @@ plte_plot(sim5) + ggtitle('Temporary, Custom Baseline')
 ```
 
 ![plot of chunk custom-baseline](figure/custom-baseline-1.png)
+
+
+# Instal
+
+To install the development version of `pltesim` use:
+
+
+```r
+devtools::install_github('christophergandrud/pltesim')
+```
