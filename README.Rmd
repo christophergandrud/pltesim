@@ -117,7 +117,7 @@ plte_plot(sim5) + ggtitle('Temporary, Custom Baseline')
 ```
 
 
-# Instal
+# Install
 
 To install the development version of `pltesim` use:
 
