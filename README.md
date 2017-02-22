@@ -132,7 +132,7 @@ plte_plot(sim5) + ggtitle('Temporary, Custom Baseline')
 ![plot of chunk custom-baseline](figure/custom-baseline-1.png)
 
 
-# Instal
+# Install
 
 To install the development version of `pltesim` use:
 
