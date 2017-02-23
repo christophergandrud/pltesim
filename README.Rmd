@@ -1,9 +1,18 @@
-```{r include=FALSE}
-knitr::opts_chunk$set(fig.width=12)
+---
+output: md_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(
+        stop_on_error = 2L,
+        fig.width=12
+)
 ```
 
 
-![](img/pltesim_logo_annimation.gif)
+![](README_files/img/pltesim_logo_annimation.gif)
 
 > R package to simulate **P**robabilistic **L**ong-**T**erm **E**ffects in models with temporal dependence
 

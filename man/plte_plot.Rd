@@ -45,4 +45,3 @@ plte_plot(sim1, t_labels = FALSE)
 
 
 }
-

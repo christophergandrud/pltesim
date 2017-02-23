@@ -98,4 +98,3 @@ sim6 <- plte_builder(obj = m2, obj_tvar = 't', cf_duration = 4,
                      cf = counterfactual, t_points = c(13, 25))
 
 }
-

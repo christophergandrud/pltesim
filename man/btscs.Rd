@@ -48,4 +48,3 @@ data('negative')
 neg_set <- btscs(df = negative, event = 'y', t_var = 'tim', cs_unit = 'group')
 
 }
-

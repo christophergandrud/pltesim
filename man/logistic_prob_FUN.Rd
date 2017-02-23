@@ -15,4 +15,3 @@ logistic regression model.}
 Function for finding predicted probability from the systematic linear
 component of a logistic regression.
 }
-
