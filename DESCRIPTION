@@ -1,6 +1,6 @@
 Package: pltesim
 Type: Package
-Title: Simulate Probabilistic Long-term Effects in Models with Temporal
+Title: Simulate Probabilistic Long-Term Effects in Models with Temporal
     Dependence
 Description: Simulate probabilistic long-term effects in models with temporal
     dependence.
