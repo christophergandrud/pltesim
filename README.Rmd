@@ -1,15 +1,27 @@
-```{r include=FALSE}
-knitr::opts_chunk$set(fig.width=12)
+---
+output: md_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(
+        stop_on_error = 2L,
+        fig.width=12
+)
 ```
 
 
-![](img/pltesim_logo_annimation.gif)
+![](README_files/img/pltesim_logo_annimation.gif)
 
 > R package to simulate **P**robabilistic **L**ong-**T**erm **E**ffects in models with temporal dependence
 
 Christopher Gandrud and Laron K. Williams
 
-Version: `r packageVersion('pltesim')` [![Build Status](https://travis-ci.org/christophergandrud/pltesim.svg?branch=master)](https://travis-ci.org/christophergandrud/pltesim)
+Version: `r packageVersion('pltesim')` [![CRAN Version](http://www.r-pkg.org/badges/version/pltesim)](https://CRAN.R-project.org/package=pltesim)
+[![Build Status](https://travis-ci.org/christophergandrud/pltesim.svg?branch=master)](https://travis-ci.org/christophergandrud/pltesim)
+![CRAN Monthly Downloads](http://cranlogs.r-pkg.org/badges/last-month/pltesim)
+![CRAN Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/pltesim)
 
 # About
 
@@ -117,7 +129,7 @@ plte_plot(sim5) + ggtitle('Temporary, Custom Baseline')
 ```
 
 
-# Instal
+# Install
 
 To install the development version of `pltesim` use:
 

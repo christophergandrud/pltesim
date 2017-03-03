@@ -1,20 +1,21 @@
 Package: pltesim
 Type: Package
-Title: Simulate Probabilistic Long-term Effects in Models with Temporal
+Title: Simulate Probabilistic Long-Term Effects in Models with Temporal
     Dependence
 Description: Simulate probabilistic long-term effects in models with temporal
     dependence.
 Version: 0.1.1
-Date: 2016-06-27
+Date: 2017-03-03
 Authors@R: c(
     person("Christopher", "Gandrud", email = "christopher.gandrud@gmail.com",
     role = c("aut", "cre")),
     person("Laron K.", "Williams", role = "aut")
     )
 BugReports: https://github.com/christophergandrud/pltesim/issues
+URL: https://CRAN.R-project.org/package=pltesim
 License: GPL (>= 3)
 LazyData: TRUE
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 Imports:
     coreSim,
     ggplot2

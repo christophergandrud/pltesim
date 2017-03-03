@@ -15,4 +15,3 @@ Simulated data set from Williams (2016) to illustrate negative duration
 dependence
 }
 \keyword{datasets}
-
