@@ -6,7 +6,7 @@
 
 Christopher Gandrud and Laron K. Williams
 
-Version: 0.1.1 [![CRAN
+Version: 0.1.2 [![CRAN
 Version](http://www.r-pkg.org/badges/version/pltesim)](https://CRAN.R-project.org/package=pltesim)
 [![Build
 Status](https://travis-ci.org/christophergandrud/pltesim.svg?branch=master)](https://travis-ci.org/christophergandrud/pltesim)

@@ -129,10 +129,3 @@ plte_plot(sim5) + ggtitle('Temporary, Custom Baseline')
 ```
 
 
-# Install
-
-To install the development version of `pltesim` use:
-
-```{r eval=FALSE}
-devtools::install_github('christophergandrud/pltesim')
-```
