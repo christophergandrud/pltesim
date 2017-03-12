@@ -26,6 +26,11 @@
 #' @param ci the proportion of the central interval of the simulations to
 #' return. Must be in (0, 1] or equivalently (0, 100].
 #'
+#' @return A data frame with the medians and central intervals of the
+#' simulated scenarios. Note that the column \code{scenario_name}
+#' encodes scenarios where y = 0 as \code{baseline} and y = 1 as
+#' \code{counterfactual}.
+#'
 #' @examples
 #' data('negative')
 #'

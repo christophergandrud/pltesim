@@ -142,10 +142,3 @@ counterfactual (`cf`) data frame. For example:
     plte_plot(sim5) + ggtitle('Temporary, Custom Baseline')
 
 ![](README_files/figure-markdown_strict/custom-baseline-1.png)
-
-Install
-=======
-
-To install the development version of `pltesim` use:
-
-    devtools::install_github('christophergandrud/pltesim')

@@ -56,7 +56,7 @@ plte_plot <- function(obj, t_labels = TRUE)
     p <- ggplot(sims, aes(x = scenario_time, y = qi_median,
                           group = scenario_name)) +
         geom_point(position = position_dodge(width = 0.3)) +
-       geom_linerange(aes(ymin = qi_min, ymax = qi_max,
+        geom_linerange(aes(ymin = qi_min, ymax = qi_max,
                             linetype = scenario_name),
                         position = position_dodge(width = 0.3)) +
         scale_linetype_discrete(name = 'Counterfactual') +

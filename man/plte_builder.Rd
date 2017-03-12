@@ -45,6 +45,12 @@ return. Must be in (0, 1] or equivalently (0, 100].}
 
 \item{nsim}{number of simulations to draw.}
 }
+\value{
+A data frame with the medians and central intervals of the
+simulated scenarios. Note that the column \code{scenario_name}
+encodes scenarios where y = 0 as \code{baseline} and y = 1 as
+\code{counterfactual}.
+}
 \description{
 Create simulations for long-term effects in models with temporal dependence
 }
