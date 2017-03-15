@@ -1,5 +1,5 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-![](README_files/img/pltesim_logo_annimation.gif)
+![](man/figures/pltesim_logo_annimation.gif)
 
 > R package to simulate **P**robabilistic **L**ong-**T**erm **E**ffects
 > in models with temporal dependence
@@ -94,7 +94,7 @@ entire time span:
 
     plte_plot(sim1) + ggtitle('Permanent')
 
-![](README_files/figure-markdown_strict/perm-1.png)
+![](man/figures/perm-1.png)
 
 Note that the numbers next to each simulation point indicate the time
 since the last event. You can choose to not show these numbers by
@@ -108,7 +108,7 @@ In the next example, the effect only lasts for one time period:
 
     plte_plot(sim2) + ggtitle('One-time')
 
-![](README_files/figure-markdown_strict/onetime-1.png)
+![](man/figures/onetime-1.png)
 
 We can also have the counterfactual effect last for short periods of
 time and simulate the effect if another event occurs:
@@ -119,7 +119,7 @@ time and simulate the effect if another event occurs:
 
     plte_plot(sim3) + ggtitle('Temporary')
 
-![](README_files/figure-markdown_strict/temp-multievent-1.png)
+![](man/figures/temp-multievent-1.png)
 
     # Multiple events, permanent counter factual
     sim4 <- plte_builder(obj = m1, obj_tvar = 't',
@@ -127,7 +127,7 @@ time and simulate the effect if another event occurs:
 
     plte_plot(sim4) + ggtitle('Permanent, Multiple Events')
 
-![](README_files/figure-markdown_strict/temp-multievent-2.png)
+![](man/figures/temp-multievent-2.png)
 
 By default the baseline scenario has all covariate values fitted at 0.
 You can supply a custom baseline scenario in the second row of the
@@ -141,4 +141,4 @@ counterfactual (`cf`) data frame. For example:
 
     plte_plot(sim5) + ggtitle('Temporary, Custom Baseline')
 
-![](README_files/figure-markdown_strict/custom-baseline-1.png)
+![](man/figures/custom-baseline-1.png)

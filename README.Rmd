@@ -6,13 +6,16 @@ output: md_document
 
 ```{r setup, include=FALSE}
 knitr::opts_knit$set(
-        stop_on_error = 2L,
+        stop_on_error=2L
+)
+knitr::opts_chunk$set(
+        fig.path="man/figures/",
         fig.width=12
 )
 ```
 
 
-![](README_files/img/pltesim_logo_annimation.gif)
+![](man/figures/pltesim_logo_annimation.gif)
 
 > R package to simulate **P**robabilistic **L**ong-**T**erm **E**ffects in models with temporal dependence
 
@@ -78,7 +81,7 @@ Note that by default the predicted probabilities from logistic regression models
 
 In this first example the counterfactual is persistent throughout the entire time span:
 
-```{r perm}
+```{r perm, fig.path='man/figures/'}
 # Permanent
 sim1 <- plte_builder(obj = m1, obj_tvar = 't',
                      cf = counterfactual, t_points = c(13, 25))
@@ -91,7 +94,7 @@ the last event. You can choose to not show these numbers by setting `t_labels = 
 
 In the next example, the effect only lasts for one time period:
 
-```{r onetime}
+```{r onetime, fig.path='man/figures/'}
 # One-time
 sim2 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 'one-time',
                      cf = counterfactual, t_points = c(13, 25))
@@ -101,7 +104,7 @@ plte_plot(sim2) + ggtitle('One-time')
 
 We can also have the counterfactual effect last for short periods of time and simulate the effect if another event occurs:
 
-```{r temp-multievent}
+```{r temp-multievent, fig.path='man/figures/'}
 # Temporary
 sim3 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 4,
                      cf = counterfactual, t_points = c(13, 25))
@@ -118,7 +121,7 @@ plte_plot(sim4) + ggtitle('Permanent, Multiple Events')
 
 By default the baseline scenario has all covariate values fitted at 0. You can supply a custom baseline scenario in the second row of the counterfactual (`cf`) data frame. For example:
 
-```{r custom-baseline}
+```{r custom-baseline, fig.path='man/figures/'}
 # Custom baseline scenario
 counterfactual_baseline <- data.frame(x = c(1, 0.5))
 
