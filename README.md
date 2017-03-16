@@ -6,7 +6,7 @@
 
 Christopher Gandrud and Laron K. Williams
 
-Version: 0.1.2 [![CRAN
+Version: 1.0 [![CRAN
 Version](http://www.r-pkg.org/badges/version/pltesim)](https://CRAN.R-project.org/package=pltesim)
 [![Build
 Status](https://travis-ci.org/christophergandrud/pltesim.svg?branch=master)](https://travis-ci.org/christophergandrud/pltesim)
@@ -61,6 +61,7 @@ binary dependent variable.
     neg_set <- btscs(df = negative_year, event = 'y', t_var = 'year',
                      cs_unit = 'group', pad_ts = FALSE)
 
+    # Estimate the model
     m1 <- glm(y ~ x + spell_time + I(spell_time^2) + I(spell_time^3),
               family = binomial(link = 'logit'),
               data = neg_set)

@@ -60,6 +60,7 @@ data('negative_year')
 neg_set <- btscs(df = negative_year, event = 'y', t_var = 'year',
                  cs_unit = 'group', pad_ts = FALSE)
 
+# Estimate the model
 m1 <- glm(y ~ x + spell_time + I(spell_time^2) + I(spell_time^3),
           family = binomial(link = 'logit'),
           data = neg_set)
