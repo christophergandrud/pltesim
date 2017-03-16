@@ -4,8 +4,11 @@
 rather than 0. The returned variable is also call `spell_time` rather than
 `spell` as the former is more intuitive.
 
+- `btscs` checks that all supplied variables are in `df`. Error otherwise.
+
 - Includes a modified version of the `negative` data set called
 `negative_year`. This enables more intuitive examples.
+
 
 # Version 0.1.2
 

@@ -39,6 +39,10 @@ btscs <- function (df, event, t_var, cs_unit, pad_ts = FALSE)
 {
     if (!is.data.frame(df)) stop('df must be a data frame.', call. = FALSE)
 
+    if (!all(c(event, t_var, cs_unit) %in% names(df)))
+        stop('Unable to locate all of the required variables in the supplied data frame.',
+             call. = FALSE)
+
     df$orig_order <- 1:nrow(df)
     df <- df[order(df[[cs_unit]], df[[t_var]]), ]
     spells <- function(x) {
