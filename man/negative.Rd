@@ -8,7 +8,7 @@ dependence}
 \format{A data set with 1000 observations and 6 variables}
 \source{
 Williams, Laron K. 2016. "Long-Term Effects in Models with Temporal
-Dependence." Political Analysis: 1-20.
+Dependence." Political Analysis. 24: 243-62
 }
 \description{
 Simulated data set from Williams (2016) to illustrate negative duration

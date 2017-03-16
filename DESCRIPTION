@@ -14,8 +14,8 @@ Description: Calculates and depicts probabilistic long-term effects
     researchers to interpret short- and long-term effects of explanatory
     variables in binary autoregressive models, which can have important
     implications for the correct interpretation of these models.
-Version: 0.1.2
-Date: 2017-03-15
+Version: 1.0
+Date: 2017-03-16
 Authors@R: c(
     person("Christopher", "Gandrud", email = "christopher.gandrud@gmail.com",
     role = c("aut", "cre")),

@@ -11,7 +11,8 @@ Dave Armstrong (2015). DAMisc: Dave Armstrong's Miscellaneous Functions.
 R package version 1.3. \url{https://CRAN.R-project.org/package=DAMisc}.
 
 It was ported largely to reduce the dependencies needed for the examples.
-There are also internal improvements, largely to handle single period spells.
+There are also internal improvements, largely to handle single period spells
+and to start the spell time counter from 1.
 
 David's package implemented the Stata function from:
 
@@ -36,8 +37,9 @@ event. Note \code{1} must signify events and \code{0} non-events.}
 if panels are unbalanced.}
 }
 \value{
-The original (\code{df}) data frame with an additional \code{spell}
-value identifying the number of observed periods since the last period.
+The original (\code{df}) data frame with an additional
+\code{spell_time} value identifying the number of observed periods in the spell,
+i.e. time points since the last period.
 }
 \description{
 Generate spells for binary variables

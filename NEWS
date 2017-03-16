@@ -1,3 +1,12 @@
+# Version 1.0
+
+- !!Breaking change!!--`btscs` now starts the spell time counter from 1,
+rather than 0. The returned variable is also call `spell_time` rather than
+`spell` as the former is more intuitive.
+
+- Includes a modified version of the `negative` data set called
+`negative_year`. This enables more intuitive examples.
+
 # Version 0.1.2
 
 - Linetype for `plte_plot` now matches Williams (2016), e.g. solid lines for

@@ -55,17 +55,13 @@ binary dependent variable.
     library(pltesim)
     library(ggplot2)
 
-    data('negative')
+    data('negative_year')
 
     # BTSCS set the data
-    neg_set <- btscs(df = negative, event = 'y', t_var = 'tim',
+    neg_set <- btscs(df = negative_year, event = 'y', t_var = 'year',
                      cs_unit = 'group', pad_ts = FALSE)
 
-
-    # Create temporal dependence variables
-    neg_set$t <- neg_set$spell + 1
-
-    m1 <- glm(y ~ x + t + I(t^2) + I(t^3),
+    m1 <- glm(y ~ x + spell_time + I(spell_time^2) + I(spell_time^3),
               family = binomial(link = 'logit'),
               data = neg_set)
 
@@ -89,7 +85,7 @@ In this first example the counterfactual is persistent throughout the
 entire time span:
 
     # Permanent
-    sim1 <- plte_builder(obj = m1, obj_tvar = 't',
+    sim1 <- plte_builder(obj = m1, obj_tvar = 'spell_time',
                          cf = counterfactual, t_points = c(13, 25))
 
     plte_plot(sim1) + ggtitle('Permanent')
@@ -103,7 +99,7 @@ setting `t_labels = FALSE` in the `plte_plot` call.
 In the next example, the effect only lasts for one time period:
 
     # One-time
-    sim2 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 'one-time',
+    sim2 <- plte_builder(obj = m1, obj_tvar = 'spell_time', cf_duration = 'one-time',
                          cf = counterfactual, t_points = c(13, 25))
 
     plte_plot(sim2) + ggtitle('One-time')
@@ -114,7 +110,7 @@ We can also have the counterfactual effect last for short periods of
 time and simulate the effect if another event occurs:
 
     # Temporary
-    sim3 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 4,
+    sim3 <- plte_builder(obj = m1, obj_tvar = 'spell_time', cf_duration = 4,
                          cf = counterfactual, t_points = c(13, 25))
 
     plte_plot(sim3) + ggtitle('Temporary')
@@ -122,7 +118,7 @@ time and simulate the effect if another event occurs:
 ![](man/figures/temp-multievent-1.png)
 
     # Multiple events, permanent counter factual
-    sim4 <- plte_builder(obj = m1, obj_tvar = 't',
+    sim4 <- plte_builder(obj = m1, obj_tvar = 'spell_time',
                          cf = counterfactual, t_points = c(13, 20, 25))
 
     plte_plot(sim4) + ggtitle('Permanent, Multiple Events')
@@ -136,7 +132,7 @@ counterfactual (`cf`) data frame. For example:
     # Custom baseline scenario
     counterfactual_baseline <- data.frame(x = c(1, 0.5))
 
-    sim5 <- plte_builder(obj = m1, obj_tvar = 't', cf_duration = 4,
+    sim5 <- plte_builder(obj = m1, obj_tvar = 'spell_time', cf_duration = 4,
                          cf = counterfactual_baseline, t_points = c(13, 25))
 
     plte_plot(sim5) + ggtitle('Temporary, Custom Baseline')
