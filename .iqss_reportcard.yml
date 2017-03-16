@@ -1,0 +1,26 @@
+# Created by IQSSdevtools (0.0.0.9000). Do not edit by hand. 
+
+ Documentation:
+  readme: yes
+  news: no
+  bugreports: yes
+  vignettes: no
+  pkgdown_website: no
+License:
+  gpl3_license: no
+Version_Control:
+  git: yes
+  github: yes
+Testing:
+  uses_testthat: yes
+  uses_travis: yes
+  uses_appveyor: no
+  no_check_warnings: yes
+  no_check_errors: yes
+  no_check_notes: yes
+  test_coverage: 86.0
+Background:
+  package_name: pltesim
+  package_version: 0.1.2
+  package_commit_sha: ab398152822adc61f6360978da4cf6d9d3572670
+  check_time: 2017-03-16 08:41:53
