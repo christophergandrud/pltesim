@@ -32,8 +32,8 @@ To find and show probabilistic long-term effects in models with temporal
 dependence with **pltesim**:
 
 1.  Estimate the coefficients. Currently **pltesim** works with binary
-    outcome models, e.g. logit, so use `glm` from the default
-    R installation.
+    outcome models, e.g. logit, so use `glm` from the default R
+    installation.
 
 2.  Create a data frame with your counterfactual. This should have a row
     with the fitted counterfactual values and columns with names

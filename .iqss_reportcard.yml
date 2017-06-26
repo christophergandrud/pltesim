@@ -2,10 +2,13 @@
 
  Documentation:
   readme: yes
+  roxygen: no
   news: no
   bugreports: yes
   vignettes: no
-  pkgdown_website: no
+  website:
+    openscholar: no
+    pkgdown_website: no
 License:
   gpl3_license: yes
 Version_Control:
@@ -15,8 +18,17 @@ Testing:
   uses_testthat: yes
   uses_travis: yes
   uses_appveyor: no
+  build_check:
+    build_check_completed: yes
+    no_check_warnings: yes
+    no_check_errors: yes
+    no_check_notes: yes
+  test_coverage: 86
 Background:
   package_name: pltesim
   package_version: '1.0'
-  package_commit_sha: 1c12f98dfd7ef37757f0b8253802d2b8abc2dcbb
-  check_time: 2017-03-16 13:09:04
+  package_language: R
+  package_commit_sha: 951a5afc312d1dd8c9ebab9b65ee2198b8dcfc5b
+  iqss_bestpractices_version: 0.0.0.9000
+  iqssdevtools_version: 0.0.0.9000
+  check_time: 2017-06-26 10:10:26
