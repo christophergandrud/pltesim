@@ -1,8 +1,8 @@
 # Version 1.0
 
 - !!Breaking change!!--`btscs` now starts the spell time counter from 1,
-rather than 0. The returned variable is also call `spell_time` rather than
-`spell` as the former is more intuitive.
+rather than 0. The returned variable is now called `spell_time` rather than
+`spell`. The former has a more intuitive interpretation.
 
 - `btscs` checks that all supplied variables are in `df`. Error otherwise.
 
