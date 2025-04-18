@@ -20,7 +20,7 @@
 #' points for the simulatinos. The (optional) middle value can specify a point
 #' between the first and last time points where a subsequent event occurs.
 #' @param FUN a function for finding a quantity of interest from the linear
-#' systematic component. See \code{\link{qi_builder}}. The default is a function
+#' systematic component. See \code{\link[coreSim]{qi_builder}}. The default is a function
 #' for finding the predicted probability from a logistic regression model.
 #' @param nsim number of simulations to draw.
 #' @param ci the proportion of the central interval of the simulations to

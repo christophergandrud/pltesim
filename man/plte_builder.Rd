@@ -8,8 +8,16 @@ Williams, Laron K. 2016. "Long-Term Effects in Models with Temporal
 Dependence". Political Analysis: 24(2): 243-262.
 }
 \usage{
-plte_builder(obj, obj_tvar, cf, cf_duration = "permanent", t_points,
-  FUN = logistic_prob_FUN, ci = 0.95, nsim = 1000)
+plte_builder(
+  obj,
+  obj_tvar,
+  cf,
+  cf_duration = "permanent",
+  t_points,
+  FUN = logistic_prob_FUN,
+  ci = 0.95,
+  nsim = 1000
+)
 }
 \arguments{
 \item{obj}{a fitted model object.}
@@ -37,7 +45,7 @@ points for the simulatinos. The (optional) middle value can specify a point
 between the first and last time points where a subsequent event occurs.}
 
 \item{FUN}{a function for finding a quantity of interest from the linear
-systematic component. See \code{\link{qi_builder}}. The default is a function
+systematic component. See \code{\link[coreSim]{qi_builder}}. The default is a function
 for finding the predicted probability from a logistic regression model.}
 
 \item{ci}{the proportion of the central interval of the simulations to

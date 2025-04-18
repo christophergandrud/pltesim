@@ -5,7 +5,9 @@
 \alias{negative_year}
 \title{Simulated data set based on Williams (2016) to illustrate negative duration
 dependence in examples}
-\format{A data set with 1000 observations and 4 variables}
+\format{
+A data set with 1000 observations and 4 variables
+}
 \description{
 Simulated data set based on Williams (2016) to illustrate negative duration
 dependence in examples
